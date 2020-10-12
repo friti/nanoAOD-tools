@@ -3,10 +3,10 @@ import sys
 import optparse
 import datetime
 
-from nanoAOD_filesPaths.BcToJpsiMuNu_new_nanoAOD_filesPath import BcToJpsiMuNu_files
-from nanoAOD_filesPaths.BcToJpsiTauNu_nanoAOD_filesPath import BcToJpsiTauNu_files
-from nanoAOD_filesPaths.OniaX_nanoAOD_filesPath import OniaX_files
-from nanoAOD_filesPaths.data_nanoAOD_filesPath import data_files
+from nanoAOD_filesPaths.BcToJpsiMuNu_files_path import BcToJpsiMuNu_files
+from nanoAOD_filesPaths.BcToJpsiTauNu_files_path import BcToJpsiTauNu_files
+from nanoAOD_filesPaths.OniaX_files_path import OniaX_files
+from nanoAOD_filesPaths.data_files_path import data_files
 
 def cfg_writer(sampleLabel, sampleDatasetPrivate, outdir, add):
     f = open("crab_cfg.py", "w")
@@ -14,6 +14,7 @@ def cfg_writer(sampleLabel, sampleDatasetPrivate, outdir, add):
     #f.write("from CRABClient.UserUtilities import config, getUsernameFromSiteDB\n")
     f.write("\nconfig = Configuration()\n")
     f.write("config.section_('General')\n")
+    f.write("config.General.workArea = 'RJPsiNanoTools_%s' %('"+add+"')\n")
     f.write("config.General.requestName = '"+sampleLabel+"_nanotools'\n")
     f.write("config.General.transferLogs=True\n")
     f.write("config.section_('JobType')\n")
